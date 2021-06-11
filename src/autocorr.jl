@@ -37,7 +37,9 @@
   
       # box
       sides = getsides(trajectory,iframe)
-  
+ 
+
+      # fazer o CellMapList 
       for i in 1:nsvt            # loop though solvent atoms
         # distance
         dist = 10000.
