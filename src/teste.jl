@@ -1,11 +1,18 @@
-      
-  cd(joinpath(work_dir, il, c, r))
+
+  using ResTime, PDBTools
+
+
+function 
+
 
   # solute (protein) selection
   atoms   = PDBTools.readPDB("simul.pdb")
   protein = PDBTools.select(atoms,"protein")
-  solute  = ComplexMixtures.Selection(protein,nmols=1)
-  
+  solute  = ResTime.Selection(protein,nmols=1)
+
+
+
+
   # dca autocorrelation calc
   if il=="EMIMDCA"
     dca            = PDBTools.select(atoms,"name N3A") 
