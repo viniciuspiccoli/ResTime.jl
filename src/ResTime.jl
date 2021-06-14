@@ -4,6 +4,7 @@ module ResTime
   using Printf
   using StructTypes
   using StaticArrays
+  using CellListMap
 
 
   # ComplexMixtures files
