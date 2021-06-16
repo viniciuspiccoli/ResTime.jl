@@ -36,10 +36,14 @@ function autocorr(trajectory::Trajectory)
    # map_pairwise!(f::Function,output,x::AbstractVector,y::AbstractVector,box::Box,lc::LinkedLists)       
  
     #cell list implementation
-    lv  = LinkedLists(nsvt)
+    lsv  = LinkedLists(nsvt)
     box = Box(sides,cutoff)  
      
-    initlists!(x_solute, box, lp)    
+    initlists!(x_solvent, box, lsvt)    
+    
+    for iat in 1:nsvt  
+      dist = 10000. 
+   
 
 
 
