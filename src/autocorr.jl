@@ -1,7 +1,4 @@
   using PDBTools  #, ComplexMixtures
-
-  export autocorr 
-
   function autocorr(trajectory::Trajectory)
   
     # number of atoms
@@ -12,9 +9,9 @@
     # vector with time - ns
     delta = 0.01
     time = zeros(nframes)
-    global t1 = 0. 
+    t1 = 0. 
     for i in 1:nframes
-      global t1 = t1 + delta  
+      t1 = t1 + delta  
       time[i] = t1
     end
   
@@ -38,12 +35,9 @@
       # box
       sides = getsides(trajectory,iframe)
  
-
-      # fazer o CellMapList 
       for i in 1:nsvt            # loop though solvent atoms
         # distance
-        dist = 10000.
-  
+        dist = +Inf
         dims = x_solvent[i] 
   
         for p in 1:nprot 

@@ -1,6 +1,6 @@
 
 # outputfile for 4 components of the system - useful for electrolyte solutions with more than one salt
-function writefile(il::String,c::String,time, prob_an, prob_an2, prob_wat, prob_cat, prob_wat)
+function writefile(il::String,c::String,time, prob_an, prob_an2, prob_cat, prob_wat)
   file = open("timecorr-$il-$c.dat","w")  
   @printf(file,"# Data for survivor probability calculation - %s \n", il)
   @printf(file,"# 1 - Simulation time (ns)\n")
@@ -27,7 +27,7 @@ function writefile(il::String,c::String,time, prob_an, prob_cat, prob_wat)
 end
 
 # output file for two components of the system (solvent)
-function writefile(il::String,c::String,time, prob_an, prob_cat, name1, name2)
+function writefile(il::String,c::String,time, prob_an, prob_cat, name1::String, name2::String)
   file = open("timecorr-$il-$c-ions.dat","w")
   @printf(file,"# Data for survivor probability calculation\n")
   @printf(file,"# 1 - Simulation time (ns)\n")
@@ -39,7 +39,7 @@ function writefile(il::String,c::String,time, prob_an, prob_cat, name1, name2)
 end
 
 # output file for one component of the system
-function writefile(il::String,c::String,time, prob_wat, name1)
+function writefile(il::String,c::String,time, prob_wat, name1::String)
   file = open("timecorr-$il-$c-water.dat","w")
   @printf(file,"# Data for survivor probability calculation\n")
   @printf(file,"# 1 - Simulation time (ns)\n")

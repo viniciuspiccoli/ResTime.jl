@@ -25,6 +25,10 @@ module ResTime
   include("events.jl")
   include("domain_eval.jl")
   include("correlation.jl")
+
+  export autocorr 
   include("autocorr.jl")
+
+  include("autocorr_CellList.jl")
 
 end
