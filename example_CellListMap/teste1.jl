@@ -59,6 +59,8 @@ teste = Array{Float64}(undef, N1, N2)
 
 # loop principal
 
+# claro que isso daqui vai dar qualquer porcaria, mas a ideia geral deve ser essa!
+
 for h in 1:nframes
 
   # Particle positions
