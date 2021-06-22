@@ -1,7 +1,7 @@
 name = "ResTime"
 uuid = "f7cc6b07-01fa-41bf-bc0b-16544420558b"
 authors = ["viniciuspiccoli <viniciuspiccoli2008@hotmail.com> and contributors"]
-version = "0.2.0"
+version = "0.3.0"
 
 [deps]
 CellListMap = "69e1c6dd-3888-40e6-b3c8-31ac5f578864"

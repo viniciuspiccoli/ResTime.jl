@@ -1,4 +1,3 @@
-
 # input for map_pairwise!
 function pair_dist!(x, y, i, j, sides, output)
   dims = x[i]
@@ -7,16 +6,14 @@ function pair_dist!(x, y, i, j, sides, output)
   output[i,j]  = d0
 end
 
-
 # function to find the minimum value saved in the matrix of atoms (Mat)
 function find_min!(M,dist,nframe)
   min = +Inf
-  for i in 1:length(M[:,1])
+  for i in 1:length(M[1,:])
     d = minimum(M[:,i])
     dist[nframe,i] = d
   end
 end
-
 
 export autocorr_cell 
 
@@ -38,12 +35,15 @@ function autocorr_cell(trajectory::Trajectory)
   Dist      = Array{Float64}(undef,nframes,nsvt)   # matrix of distances between the atoms 
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
   evals     = zeros(Float64, nframes, nsvt)        # Matrix of the number of events observed
-  sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events
- 
-  cutoff = 10 # celllistmap parameter
+  sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events 
+  cutoff    = 10 # celllistmap parameter
 
   for iframe in 1:nframes 
-   
+
+    println("Frame $iframe")
+
+    println("inicializando variáveis importantes ")
+
     nextframe!(trajectory) # reading coordinates of next frame
     solute    = trajectory.solute        #                
     solvent   = trajectory.solvent       # variables to compute the autocorrelation function   
@@ -54,18 +54,28 @@ function autocorr_cell(trajectory::Trajectory)
     sides = getsides(trajectory,iframe)   # box
     box = Box(sides,cutoff) 
 
+    println("Definindo lados e a caixa dada o tamanho do cubo")
+
     # Initialize auxiliary linked lists (largest set!)
     cl = CellList(x_solute, x_solvent, box)
 
+    println("Definindo a grande")
+
     # atoms dist - must be allocated and calculated for each frame
-    Mat = Array{Float64}(undef, x_solute, x_solvent)
-    map_pairwise!((x,y,i,j,d2,output) -> (x,y,i,j, sides, Mat), Mat,box,cl)
+
+    println("Matrix com todas os pares entre o soluto e o solvent")
+    Mat = Array{Float64}(undef, nprot, nsvt)
+
+   
+    println("iniciando função map pairwise")
+    map_pairwise!((x,y,i,j,d2,output) -> (x_solute, x_solvent, i, j, sides, Mat), Mat, box, cl)
+
+
+    println("Adicionando na matriz Dist o valor na posição $iframe")
     find_min!(Mat, Dist, iframe)
 
-  end
- 
+  end 
   closetraj(trajectory)
   return Dist, domain, evals, sp, nprot, nsvt, nframes, time
-
 end
 

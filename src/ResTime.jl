@@ -6,8 +6,13 @@ module ResTime
   using StaticArrays
   using CellListMap
 
+  export distance 
+  export correlation
+  export correlation_cell
+  export autocorr 
+  export autocorr_cell
 
-  # ComplexMixtures files
+
   include("Selection.jl")
   include("FileOperations.jl")  
   include("viewmol.jl") 
@@ -17,7 +22,6 @@ module ResTime
   include("ChemFiles.jl")
   include("NamdDCD.jl")
   include("PDBTraj.jl")
-  ########################
  
   include("sample_space.jl")
   include("survivor_prob.jl")
@@ -25,10 +29,6 @@ module ResTime
   include("events.jl")
   include("domain_eval.jl")
   include("correlation.jl")
-
-  export autocorr 
   include("autocorr.jl")
-
   include("autocorr_CellList.jl")
-
 end

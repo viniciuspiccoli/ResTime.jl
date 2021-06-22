@@ -31,20 +31,9 @@ box    = Box(sides,cutoff) # isso também muda
 function pair_dist!(x, y, i, j, sides, output)
   dims = x[i]
   pt   = y[j]
-
-
-  #println(x[i],"    ",y[i])
-  #println("  valor para a distância")
-
-
   d0 = ResTime.distance(dims, pt, sides)
-
-  #println(d0)
-    
   output[i,j]  = d0 
-
 end
-
 
 # function to find the minimum value saved in the matrix of atoms
 function find_min!(M,dist,nframe)
