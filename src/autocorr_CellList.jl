@@ -1,34 +1,21 @@
-#- ao invés de criar uma matrix com distâncias, eu posso já ir calculando os valores que entram na matrix com 0 e 1 dependendo do cutoff
-#- ao função domais vai entrar dentro dessa auto_corr
-#- no loop, se a distancia for menor que o cutpff assinalo 1 (true), se não 0(false)
+
+# input for map_pairwise!
+function pair_dist!(x, y, i, j, sides, output)
+  dims = x[i]
+  pt   = y[j]
+  d0 = ResTime.distance(dims, pt, sides)
+  output[i,j]  = d0
+end
 
 
-
-#  function domain_eval!(dist,domain,cutoff)
-#    for i in eachindex(dist)
-#      if dist[i] <= cutoff
-#        domain[i] = true
-#      else
-#        domain[i] = false
-#      end
-#    end
-#  end
-
-
-
-
-
- function dist_eval!(x,y,i,j,d2,dist;corte=4)
-   d = sqrt(d2)
-   dist[j] = d 
- #  if d <= corte
- #    dist[j] = true
- #  else
- #    dist[j] = false
- #  end
- end
-
-
+# function to find the minimum value saved in the matrix of atoms (Mat)
+function find_min!(M,dist,nframe)
+  min = +Inf
+  for i in 1:length(M[:,1])
+    d = minimum(M[:,i])
+    dist[nframe,i] = d
+  end
+end
 
 
 export autocorr_cell 
@@ -42,9 +29,9 @@ function autocorr_cell(trajectory::Trajectory)
   # vector with time - ns 
   delta = 0.01
   time = zeros(nframes)
-  global t1 = 0. 
+  t1 = 0. 
   for i in 1:nframes
-    global t1 = t1 + delta  
+    t1 = t1 + delta  
     time[i] = t1
   end
 
@@ -53,7 +40,7 @@ function autocorr_cell(trajectory::Trajectory)
   evals     = zeros(Float64, nframes, nsvt)        # Matrix of the number of events observed
   sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events
  
-  cutoff = 4
+  cutoff = 10 # celllistmap parameter
 
   for iframe in 1:nframes 
    
@@ -62,46 +49,21 @@ function autocorr_cell(trajectory::Trajectory)
     solvent   = trajectory.solvent       # variables to compute the autocorrelation function   
     x_solute  = trajectory.x_solute      #
     x_solvent = trajectory.x_solvent     #
-    sides = getsides(trajectory,iframe)   # box
 
-   # map_pairwise!(f::Function,output,x::AbstractVector,y::AbstractVector,box::Box,lc::LinkedLists)       
- 
-    #cell list implementation
-    lsv  = LinkedLists(nsvt)
-    box = Box(sides,cutoff)       
-    initlists!(x_solvent, box, lsv)    
-   
-    map_pairwise!((x,y,i,j,d2,dist) -> dist_eval!(x_solute,x_solvent,i,j,d2,Dist),Dist,x_solvent,box,lsv)
+    # CellLisMap parameters 
+    sides = getsides(trajectory,iframe)   # box
+    box = Box(sides,cutoff) 
+
+    # Initialize auxiliary linked lists (largest set!)
+    cl = CellList(x_solute, x_solvent, box)
+
+    # atoms dist - must be allocated and calculated for each frame
+    Mat = Array{Float64}(undef, x_solute, x_solvent)
+    map_pairwise!((x,y,i,j,d2,output) -> (x,y,i,j, sides, Mat), Mat,box,cl)
+    find_min!(Mat, Dist, iframe)
+
   end
  
-#    for iat in 1:nsvt  
-#      dist = 10000. 
-# 
-#    # fazer o CellMapList 
-#    for i in 1:nsvt            # loop though solvent atoms
-#      # distance
-#      dist = 10000.
-#
-#      dims = x_solvent[i] 
-#
-#      for p in 1:nprot 
-#
-#        x_this_solute = viewmol(i,x_solvent,solvent)
-#        pt = x_solute[p]
-#        D = distance(dims,pt,sides)                  # distance calculation
-#
-#        # to calculate the protein atom that are at the closest distance to the sovlent  
-#        if dist > D
-#          dist = D
-#        end
-#                
-#      end
-#      Dist[iframe,i] = dist
-#    end
-#  end
-
-
-
   closetraj(trajectory)
   return Dist, domain, evals, sp, nprot, nsvt, nframes, time
 
