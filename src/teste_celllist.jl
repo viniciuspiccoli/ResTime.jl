@@ -9,6 +9,8 @@
   water          = PDBTools.select(atoms,"name N and resname NO3")
   solvent        = ResTime.Selection(water,natomspermol=1)
   trajectory     = ResTime.Trajectory("processed.xtc",solute,solvent,format="XTC")
+   
+  #time, prob = correlation_cell(trajectory,4.)
   dist, domain, evals, sp, nprot, nsvt, nframes, stime = autocorr_cell(trajectory)
 
   # standard method 

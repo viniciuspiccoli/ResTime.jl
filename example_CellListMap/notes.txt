@@ -1,0 +1,11 @@
+  # Aqui eu preciso fazer um loop pelos frames de forma que ele pegue
+  # a menor distância de um átomo do solvente na proteína e salve
+  # na matrix na posição do frame e do solvente
+  # matriz de nframes linha por N2 colunas
+  
+  # criar funcao que salva todas as distancias entre o átomo 1 do
+  #soluto com todos os átomos do solvente
+  # para cada frame eu vou ter uma matrix nsoluto x nsolvente
+  # ai eu faço a conta das menores distâncias e salvo na matrix dist
+  # que é nframes * nsolvente
+
