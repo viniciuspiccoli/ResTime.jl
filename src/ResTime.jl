@@ -31,4 +31,5 @@ module ResTime
   include("correlation.jl")
   include("autocorr.jl")
   include("autocorr_CellList.jl")
+
 end
