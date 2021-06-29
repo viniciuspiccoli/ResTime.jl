@@ -1,6 +1,6 @@
 function pair_two!(i, j, d2, matrix)
   d = sqrt(d2)
-  println("distance between $i and $j is = $d")
+#  println("distance between $i and $j is = $d")
   #println("coordenadas em x = $x_solute e y = $x_solvent")
  # matrix[i,j] = d
 end
@@ -36,8 +36,12 @@ function autocorr_cell(trajectory::Trajectory)
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
   evals     = zeros(Float64, nframes, nsvt)        # Matrix of the number of events observed
   sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events 
-  cutoff    = 10 # celllistmap parameter
+  cutoff    = 20 # celllistmap parameter
+  matrix = Array{Float64}(undef, nprot, nsvt)
 
+  println("parameters:")
+  println("Number of protein atoms = ", nprot) 
+  println("Number of solvent atoms = ", nsvt)
 
 
   for iframe in 1:nframes 
@@ -55,8 +59,7 @@ function autocorr_cell(trajectory::Trajectory)
     cl = CellList(x_solute, x_solvent, box)
 
     # atoms dist - must be allocated and calculated for each frame
-    matrix = Array{Float64}(undef, nprot, nsvt)
-    map_pairwise!((x,y,i,j,d2,output) -> pair_two!(i, j, d2, matrix), matrix, box, cl)
+    map_pairwise!((x,y,i,j,d2,output) -> pair_two!(i, j, d2, output), matrix, box, cl)
 
     #println(matrix)
     #find_min!(matrix, Dist, iframe)
@@ -64,7 +67,7 @@ function autocorr_cell(trajectory::Trajectory)
     
   end 
   closetraj(trajectory)
-  return Dist, domain, evals, sp, nprot, nsvt, nframes, time
+#  return Dist, domain, evals, sp, nprot, nsvt, nframes, time
 end
 
 
