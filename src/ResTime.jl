@@ -5,6 +5,7 @@ module ResTime
   using StructTypes
   using StaticArrays
   using CellListMap
+  using LinearAlgebra
 
   export distance 
   export correlation

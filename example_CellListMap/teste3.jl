@@ -6,6 +6,15 @@ function push_pair!(i,j,d2,matrix)
   return matrix
 end
 
+function push_pair2!(i,j,d2,matrix)
+  d = sqrt(d2)
+  matrix[j,i] = d 
+  return matrix
+end
+
+
+
+
 function find_min!(M,dist,nframe)
   min = +Inf
   for i in 1:length(M[1,:])
@@ -47,9 +56,10 @@ let
     y = [ box.sides .* rand(SVector{3,Float64}) for i in 1:N2 ]
     
     # Initialize auxiliary linked lists (largest set!)
-    cl = CellList(x,y,box)  
-    matrix = map_pairwise!((x,y,i,j,d2,output) -> push_pair!(i,j,d2,output),matrix,box,cl)
+    cl = CellList(x,y,box)
   
+    matrix = map_pairwise!((x,y,i,j,d2,output) -> push_pair!(i,j,d2,output),matrix,box,cl)
+
     #println(matrix)
     find_min!(matrix, Dist, i)  
 

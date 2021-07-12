@@ -92,13 +92,13 @@ function autocorr_cell(trajectory::Trajectory)
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
   evals     = zeros(Float64, nframes, nsvt)        # Matrix of the number of events observed
   sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events 
-  cutoff    = 30 # celllistmap parameter
+  cutoff    = 10 # celllistmap parameter
   
-  #if nprot > nsvt
-  #  matrix    = zeros(Float64,nsvt, nprot)
-  #else
+  if nprot > nsvt
+    matrix    = zeros(Float64,nsvt, nprot)
+  else
     matrix    = zeros(Float64,nprot, nsvt)
-  #end
+  end
 
   for iframe in 1:nframes 
     nextframe!(trajectory) # reading coordinates of next frame
@@ -119,12 +119,12 @@ function autocorr_cell(trajectory::Trajectory)
    
     add_inf!(matrix)
 
-   # if nprot > nsvt 
-   #   new = transpose(matrix) # due to the CellListMap package, this must be performed to avoid boundserror
-   #   find_data!(new, Dist, iframe)
-   # else
+    if nprot > nsvt 
+      new = transpose(matrix) # due to the CellListMap package, this must be performed to avoid boundserror
+      find_data!(new, Dist, iframe)
+    else
       find_data!(matrix, Dist, iframe)
-   # end
+    end
 
   end
   closetraj(trajectory)
