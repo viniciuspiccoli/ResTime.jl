@@ -1,4 +1,5 @@
- function correlation(traj::Trajectory,cutoff::Float64)
+ # compute the survivor probability function using standard (slow) method. Useful to compare results with correlation function
+ function corr_bench(traj::Trajectory,cutoff::Float64)
    # main function - calculation of the matrix distance   
    dist, domain, evals, sp, nprot, nsvt, nframes, stime = autocorr(traj) 
    # evaluation if the solvent is inside (or not) of the "protein domain"   
@@ -11,8 +12,8 @@
    return stime, prob_sur
  end
 
-
- function correlation_cell(traj::Trajectory,cutoff::Float64)
+ # Calculation of survivor probability function using CellListMap.jl package 
+ function correlation(traj::Trajectory,cutoff::Float64)
    # main function - calculation of the matrix distance   
    dist, domain, evals, sp, nprot, nsvt, nframes, stime = autocorr_cell(traj)
    # evaluation if the solvent is inside (or not) of the "protein domain"   
@@ -24,5 +25,3 @@
    prob_sur = survivor_prob(evals, sp, nsvt) 
    return stime, prob_sur
  end
-
-

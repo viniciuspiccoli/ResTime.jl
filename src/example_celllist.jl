@@ -1,3 +1,5 @@
+#Example of CellListMap application.
+
 # Function to be evalulated for each pair: push pair if d<cutoff
 function push_pair!(i,j,d2,pairs,cutoff)
   d = sqrt(d2)

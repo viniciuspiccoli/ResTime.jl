@@ -1,7 +1,4 @@
 
-# tem alguma coisa errada aqui!!!!
-# checar essas funçòes que estào dando o resultado errado!
-
 
 function push_pair!(i,j,d2,matrix)
   d = sqrt(d2)
@@ -21,57 +18,9 @@ function find_data!(matrix, dist, nframe)
   for i in 1:length(matrix[1,:])            # loop though number of solvents
     data = matrix[:,i]                      # all distances between protein atoms and the ith solvent
     dist[nframe,i] = minimum(data)
-#    println("para o solvente $i o menor valor é $(minimum(data)) - frame $nframe")
   end
 end
 
-
-
-#function find_min!(matrix, dist, nframe)
-#  for i in 1:length(matrix[1,:])            # loop though number of solvents
-#    data = matrix[:,i]                      # all distances between protein atoms and the ith solvent
-#    d = +Inf
-#    for j in 1:length(data)
-#      if data[j] < d && data[j] != 0
-#        d = data[j]     
-#      end
-#    end
-#    matrix[nframe,i] = d
-#  end
-#end
-
-
-
-
-
-
-
-
-#function find_min!(M,dist,nframe)
-#  for i in 1:length(M[1,:]) # loop though all solvent atoms
-#    a = +Inf
-#    data = M[:,i]
-#    n = 0
-#    while n < 1   #length(data) 
-#      n = n + 1
-#   #   println(a,"    ",data[n])
-#      if a > data[n] 
-#        if data[n] != 0
-#          a = data[n]
-#       #   println("Value of a at position $n = $a") 
-#        end
-#      end
-#    end
-#    #if a == -Inf
-#    #  a = 0.
-#    #end
-##    println("Smaller value for frame $i = $a")
-#    dist[nframe,i] = a
-#  end
-#end
-
-
-export autocorr_cell 
 
 function autocorr_cell(trajectory::Trajectory)
    
