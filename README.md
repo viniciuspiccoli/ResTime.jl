@@ -12,7 +12,7 @@ The package can be installed using:
 ## Main idea
 
 <p align=center>
-<img height=250px src= https://user-images.githubusercontent.com/42824876/126248112-a8a7edb9-07d5-4a5e-997d-2818da7e0790.png>
+<img height=200px src= https://user-images.githubusercontent.com/42824876/126248112-a8a7edb9-07d5-4a5e-997d-2818da7e0790.png>
 </p>
 
 
