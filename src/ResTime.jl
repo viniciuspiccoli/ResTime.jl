@@ -14,6 +14,7 @@ module ResTime
   export corr_bench
   export autocorr 
   export autocorr_cell
+  export fitting
 
 
   include("Selection.jl")
@@ -34,5 +35,6 @@ module ResTime
   include("correlation.jl")
   include("autocorr.jl")
   include("autocorr_CellList.jl")
+  include("fitting.jl")
 
 end
