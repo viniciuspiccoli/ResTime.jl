@@ -6,10 +6,12 @@ module ResTime
   using StaticArrays
   using CellListMap
   using LinearAlgebra
+  using LsqFit
+  using Polynomials
 
   export distance 
   export correlation
-  export correlation_cell
+  export corr_bench
   export autocorr 
   export autocorr_cell
 
