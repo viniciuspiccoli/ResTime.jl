@@ -9,11 +9,9 @@ Function to perform a biexponential fit
 
 ```
 function fitting(xdata, ydata)
-
   p0 = [0.5, 0.5, 0.5, 0.5]   # guess points - 
-  model(t, p) = p[1] * exp(-p[2] * t) +  p[3] * exp(-p[4] * t)   # model trying to fit
+  model(t, p) = p[1] * exp.(-p[2] * t) +  p[3] * exp.(-p[4] * t)   # model trying to fit
   nlin_fit(model, xdata, ydata, p0)
-
 end
 
 function fitting_md2(xdata, ydata)
