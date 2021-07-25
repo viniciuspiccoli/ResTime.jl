@@ -1,5 +1,44 @@
 # fazer uma funçào para fitar
 
+#EasyFit
+function adjust(il::String, c)
+    file1 = readdlm("DATA_TIMECORR_4A/timecorr-$il-$c-ions.dat", comments=true, comment_char='#')
+    # time for each concentration
+    time1 = file1[1:500, 1]
+    # data for each system compoent
+    if length(il) != 10
+      data1 = file1[1:500, 2] # anion
+      data2 = file1[1:500, 3] # cation
+    else
+      data1 = file1[1:500, 2]  # anion 1
+      data2 = file1[1:500, 3]  # anion 2
+      data3 = file1[1:500, 4]  # cation
+    end
+
+    if length(il) != 10
+      println("Exponetials fits")
+      println("*************************************")
+      println("$il")
+      println("       ")
+      println("Cation : $(il[1:4])")
+      fit2 = fitexp(time1, data2, n=3)
+      println(fit2)
+      println("  ")
+      println("Anion  : $(il[5:7])")
+      fit1 = fitexp(time1, data1, n=3)
+      println(fit1)
+      println("*************************************")
+
+
+
+
+
+
+
+
+
+
+
 #using Polynomials
 #using LsqFit
 #using Plots
