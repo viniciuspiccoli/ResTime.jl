@@ -36,3 +36,12 @@ The sample space would be of the form [3 2 1 ]. Probability is the ratio between
 
 ## Example 1
 
+![drawing](https://user-images.githubusercontent.com/42824876/126917146-53f14007-e568-4584-9bae-d627ef0862a6.png)
+
+
+----- Figura ficou feia porque cortei a trajetória - Manter só para ajudar no texto
+[time_corr_functions.pdf](https://github.com/viniciuspiccoli/ResTime.jl/files/6874720/time_corr_functions.pdf)
+
+
+
+
