@@ -86,6 +86,9 @@ ResTime.writefile("EMIMDCA","1.50",time_an, prob_an, prob_cat, prob_wat)
 ```
 
 
+![time_corr_functions](https://user-images.githubusercontent.com/42824876/127359481-062c62e5-ba64-4e91-9774-0defe495a981.png)
+
+
 
 
 
