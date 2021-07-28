@@ -34,15 +34,58 @@ Since we want to calculate the probability of survival, we need the sample space
 The sample space would be of the form [3 2 1 ]. Probability is the ratio between events (correlation matrix) and the sample space. Thus, P = [1/3 0/2 0/1]. So the above description shows how the probability functions are being calculated. 
 
 
-## Example 1
+## Example 1 (Revisar o texto)
+
+In this example, the time-correlation functions of EMIM, DCA, and water will be calculated until 3.5Å from the protein surface (vertical dotted line in the figure below). Minimum-distance distribution functions show that up to 3.5Å all relevant interactions with the protein already occurred, thus this distance will be used as a cutoff for the calculation.
+
+
 <p align=center>
 <img height=200px src= https://user-images.githubusercontent.com/42824876/126917146-53f14007-e568-4584-9bae-d627ef0862a6.png>
 </p>	
 
+-----Completar as instruções...
+
+```
+using ResTime, PDBTools, Plots, LaTeXStrings
+```
 
 
------ Figura ficou feia porque cortei a trajetória - Manter só para ajudar no texto
-[time_corr_functions.pdf](https://github.com/viniciuspiccoli/ResTime.jl/files/6874720/time_corr_functions.pdf)
+```
+solute  = "protein"
+atoms   = PDBTools.readPDB("sample-groMD.pdb") # selection - all atoms of the PDB file.
+```
+
+
+```
+#protein selection
+sel0    = PDBTools.select(atoms,solute)        # Selection of which atoms from the PDB are the protein atoms.
+protein = ResTime.Selection(sel0, nmols=1)  # Selection for the calculation of time-correlation function / nmols = 1 (one protein)
+
+# anion selection
+sel1    = PDBTools.select(atoms,"name N3A and resname NC")
+anion   = ResTime.Selection(sel1,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
+
+# cation selection
+sel2    = PDBTools.select(atoms,"name LP and resname EMI")
+cation  = ResTime.Selection(sel2,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
+
+# water selection
+sel3    = PDBTools.select(atoms,"name OW and resname SOL")
+water   = ResTime.Selection(sel3,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
+```
+
+
+```
+cutoff = 3.5 # cutoff based on MDDFs
+```
+
+
+```
+# Print the result in a file
+ResTime.writefile("EMIMDCA","1.50",time_an, prob_an, prob_cat, prob_wat)
+```
+
+
 
 
 
