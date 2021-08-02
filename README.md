@@ -31,7 +31,7 @@ The criterion for a molecule to be in the evaluated region is if it stays within
 
 Since we want to calculate the probability of survival, we need the sample space for the system. That is since we are dealing with 4 frames, the possibilities are to stay inside the evaluated region for three times the time dt1 , twice dt2, and once dt3 .
 
-The sample space would be of the form [3 2 1 ]. Probability is the ratio between events (correlation matrix) and the sample space. Thus, P = [1/3 0/2 0/1]. So the above description shows how the probability functions are being calculated. 
+The sample space would be of the form [3 2 1 ]. Probability is the ratio between events (correlation matrix) and the sample space. Thus, P = [1/3 0/2 0/1]. So the above description shows how the probability functions (time-correlation functions) are being calculated. 
 
 
 ## Example 1 (Revisar o texto)
