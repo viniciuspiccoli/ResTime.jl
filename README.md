@@ -34,7 +34,7 @@ Since we want to calculate the probability of survival, we need the sample space
 The sample space would be of the form [3 2 1 ]. Probability is the ratio between events (correlation matrix) and the sample space. Thus, P = [1/3 0/2 0/1]. So the above description shows how the probability functions (time-correlation functions) are being calculated. 
 
 
-## Example 1 (Revisar o texto)
+## Example 1 
 
 In this example, the time-correlation functions of EMIM, DCA, and water will be calculated until 3.5Å from the protein surface (vertical dotted line in the figure below). Minimum-distance distribution functions show that up to 3.5Å all relevant interactions with the protein already occurred, thus this distance will be used as a cutoff for the calculation.
 
@@ -43,7 +43,7 @@ In this example, the time-correlation functions of EMIM, DCA, and water will be 
 <img height=200px src= https://user-images.githubusercontent.com/42824876/126917146-53f14007-e568-4584-9bae-d627ef0862a6.png>
 </p>	
 
------Completar as instruções...
+------ completar as instruções
 
 ```
 using ResTime, PDBTools, Plots, LaTeXStrings
