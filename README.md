@@ -21,7 +21,6 @@ The algorithm used is based on well-established methods to calculate the residen
 </p>	
 
 
--- Adaptar isso daqui para ser uma legenda
 Illustration of 4 frames from a molecular dynamics simulation. Each frame is separated by a fixed time equal to dt (time step of molecular dynamics). In the Figure, we are evaluating whether the water molecules are inside or outside the perimeter represented by the dashed lines. It is important to note that for complex solutes the dashed line, which indicates the cut-off point, will have varying shapes. This is because the distance we calculate is between one atom of the cosolvent (chosen for convenience, for example, the O of water) and the nearest atom of the protein.
 
 
@@ -45,22 +44,28 @@ In this example, the time-correlation functions of EMIM, DCA, and water will be 
 
 ------ completar as instruções
 
+Loading the packages required for the calculations:
 ```
 using ResTime, PDBTools, Plots, LaTeXStrings
 ```
 
 
+To select the solute is necessary the usage of readPDB function from PDBTools, in this example, the solute is a protein. The first step is to load information about all atoms’ positions from a PDB (this PDB is the final frame of a simulation performed in gromacs).
 ```
 solute  = "protein"
 atoms   = PDBTools.readPDB("sample-groMD.pdb") # selection - all atoms of the PDB file.
 ```
 
 
+After loading all atoms, it is necessary to select the protein atoms.
 ```
 #protein selection
 sel0    = PDBTools.select(atoms,solute)        # Selection of which atoms from the PDB are the protein atoms.
 protein = ResTime.Selection(sel0, nmols=1)  # Selection for the calculation of time-correlation function / nmols = 1 (one protein)
+```
 
+Selection of solvent molecules. The calculation will use one atom for each solvent molecule. For instance, DCA is a molecule that contains 5 atoms (3 nitrogens and 2 carbons). For the time-corr calculation, it will be selected just the charged nitrogen. Therefore, performing the selection it is required the VMD nomenclature. Thus, to select the charged nitrogen of DCA the selection is `name N3A and resname NC`.
+```
 # anion selection
 sel1    = PDBTools.select(atoms,"name N3A and resname NC")
 anion   = ResTime.Selection(sel1,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
@@ -68,26 +73,33 @@ anion   = ResTime.Selection(sel1,natomspermol=1)     # natomspermol = 1 - select
 # cation selection
 sel2    = PDBTools.select(atoms,"name LP and resname EMI")
 cation  = ResTime.Selection(sel2,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
-
+```
+The oxygen selection from OPLS-AA TIP3P water can be done by:
+```
 # water selection
 sel3    = PDBTools.select(atoms,"name OW and resname SOL")
 water   = ResTime.Selection(sel3,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
 ```
 
 
+Cutoff selection based on dotted line displayed at the MDDFs figure.
 ```
 cutoff = 3.5 # cutoff based on MDDFs
 ```
 
 
+Print file to save data:
 ```
 # Print the result in a file
 ResTime.writefile("EMIMDCA","1.50",time_an, prob_an, prob_cat, prob_wat)
 ```
 
+
+Example of the final result.
 <p align=center>
 <img height=200px src=https://user-images.githubusercontent.com/42824876/127359481-062c62e5-ba64-4e91-9774-0defe495a981.png>
 </p>
+
 
 
 
