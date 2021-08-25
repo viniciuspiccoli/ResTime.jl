@@ -5,6 +5,8 @@ ResTime is a simple package to compute probability survival functions from molec
 * [1 - Install](#install) 
 * [2 - General explanation of the algorithm](#main_idea)
 * [3 - Download of the trajectory for example 1](#download)
+* [4 - Calculation of the time-correlation functions](#example1)
+* [5 - Plotting the results]("plot")
 
 ## <a name="install"></a>1. Install
 The package can be installed using:
@@ -42,10 +44,13 @@ The sample space would be of the form [3 2 1 ]. Probability is the ratio between
 The data avaiable will be useful as an example for the way that ResTime.jl can be used to calculate time-correlation functions from molecular dynamics simulations
 
 ```
-
+wget https://github.com/viniciuspiccoli/ResTime.jl/tree/master/data_example1/data.tar.gz 
+tar -xf archive.tar.gz
 ```
+The files that will be used are the trajectory,`sample-groMD.xtc`, and the atoms' positions,  `sample-groMD.gro`.
 
-##     Example 1 
+
+##   <a name="example1"></a>4. Calculation of the time-correlation functions 
 
 In this example, the time-correlation functions of EMIM, DCA, and water will be calculated until 3.5Å from the protein surface (vertical dotted line in the figure below). Minimum-distance distribution functions show that up to 3.5Å all relevant interactions with the protein already occurred, thus this distance will be used as a cutoff for the calculation.
 
@@ -54,20 +59,20 @@ In this example, the time-correlation functions of EMIM, DCA, and water will be 
 <img height=200px src= https://user-images.githubusercontent.com/42824876/126917146-53f14007-e568-4584-9bae-d627ef0862a6.png>
 </p>	
 
------- completar as instruções
 
+### loading packages
 Loading the packages required for the calculations:
 ```
-using ResTime, PDBTools, Plots, LaTeXStrings
+using  Plots, LaTeXStrings
+import Restime, PDBTools
 ```
 
-
+### Selection of solute and solvent
 To select the solute is necessary the usage of readPDB function from PDBTools, in this example, the solute is a protein. The first step is to load information about all atoms’ positions from a PDB (this PDB is the final frame of a simulation performed in gromacs).
 ```
 solute  = "protein"
 atoms   = PDBTools.readPDB("sample-groMD.pdb") # selection - all atoms of the PDB file.
 ```
-
 
 After loading all atoms, it is necessary to select the protein atoms.
 ```
@@ -93,12 +98,10 @@ sel3    = PDBTools.select(atoms,"name OW and resname SOL")
 water   = ResTime.Selection(sel3,natomspermol=1)     # natomspermol = 1 - selection of 1 atom for each molecule
 ```
 
-
 Cutoff selection based on dotted line displayed at the MDDFs figure.
 ```
 cutoff = 3.5 # cutoff based on MDDFs
 ```
-
 
 Print file to save data:
 ```
@@ -106,6 +109,8 @@ Print file to save data:
 ResTime.writefile("EMIMDCA","1.50",time_an, prob_an, prob_cat, prob_wat)
 ```
 
+
+## <a name="plot"></a>5. Plotting the results 
 
 Example of the final result.
 <p align=center>
