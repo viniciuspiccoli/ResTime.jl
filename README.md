@@ -2,14 +2,17 @@
 
 ResTime is a simple package to compute probability survival functions from molecular dynamics simulations (MD). These functions can be used to calculate the residence time of different solvent molecules in  MD trajectories. The general algorithm was based on the following two articles: [Link1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1301175/) and [Link2](https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.540141116)
 
+* [1 - Install](#install) 
+* [2 - General explanation of the algorithm](#main_idea)
+* [3 - Download of the trajectory for example 1](#download)
 
-## Install
+## <a name="install"></a>1. Install
 The package can be installed using:
 ```
 ] add https://github.com/viniciuspiccoli/ResTime.jl
 ```
 
-## Main idea
+## <a name="main_idea"></a>2. General explanation of the algorithm
 
 
 The algorithm used is based on well-established methods to calculate the residence time of water in different solvation layers of a protein (References given in Links 1 and 2). We calculate the probability that a molecule has to stay, throughout the simulation, within a distance R around the protein. In the calculations performed so far, the distance is defined by taking into account the MDDFs. For example, taking Figures 1 and 3 we have that the most prominent peaks for the ions appear up to 4Å. So, we will define a 4Å cut that will originate a perimeter around the solute (circular dotted line in schematic representation below) and, thus, we will evaluate, frame by frame, if a molecule is inside the perimeter or not. We create a matrix (that has the number of columns equal to the number of frames and the number of rows equal to the number of molecules) where if a molecule is within the perimeter we store 1, otherwise, we store zero. The Figure below shows a schematic representation of how the correlation functions were calculated.
@@ -33,7 +36,16 @@ Since we want to calculate the probability of survival, we need the sample space
 The sample space would be of the form [3 2 1 ]. Probability is the ratio between events (correlation matrix) and the sample space. Thus, P = [1/3 0/2 0/1]. So the above description shows how the probability functions (time-correlation functions) are being calculated. 
 
 
-## Example 1 
+
+
+## <a name="download"></a>3. Download of the trajectory for example1
+The data avaiable will be useful as an example for the way that ResTime.jl can be used to calculate time-correlation functions from molecular dynamics simulations
+
+```
+
+```
+
+##     Example 1 
 
 In this example, the time-correlation functions of EMIM, DCA, and water will be calculated until 3.5Å from the protein surface (vertical dotted line in the figure below). Minimum-distance distribution functions show that up to 3.5Å all relevant interactions with the protein already occurred, thus this distance will be used as a cutoff for the calculation.
 
