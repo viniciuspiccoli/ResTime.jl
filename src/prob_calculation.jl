@@ -1,6 +1,6 @@
 export prob_calculation
 
-function prob_calculation(pdb::String, cos_name::String, cos_selection::String, cutoff, trajectory; solute="protein" water=true, water_sel="name OW")
+function prob_calculation(pdb::String, cos_name::String, cos_selection::String, cutoff, trajectory; solute="protein", water=true, water_sel="name OW")
 
   # solute (protein) selection
   atoms   = PDBTools.readPDB(pdb)
