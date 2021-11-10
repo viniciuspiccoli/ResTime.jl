@@ -1,25 +1,23 @@
-# fazer uma funçào para fitar
 
-# fazer aqui funcao para fitar os resultados
-#=
-julia> fitexp(x,y) # or fitexponential
+# Function to fit data using easyfit
+"""
+function to fit (using exponentials curves) time-correlation functions using EasyFit.
+fitting("Directory", "file.dat", 2, 1)
 
- ------------ Single Exponential fit ----------- 
+path_to_file : Directory of the .dat file
+file : name of the .dat file
+comp : componente that will be analised. 2 for anion and 3 for cation / 2 - anion1; 3 - anion2; 4- cation
+order : number of exponentials
 
- Equation: y = A exp(x/b) + C
-
- With: A = 0.08309782657193134
-       b = 0.4408664103095801
-       C = 1.4408664103095801
-
- Pearson correlation coefficient, R = 0.765338307304594
-
- Predicted Y: ypred = [0.10558554154948542, 0.16605481935145136...
- residues = [0.059213264010704494, 0.056598074147493044...
-
- ----------------------------------------------- 
-
-=#
+"""
+function fitting(path_to_file::String, file::String, comp::Int64 , order::Int64)
+      archive  = readdlm("$path_to_file/$file", comments=true, comment_char='#')
+      time     = archive[:,1]  # dt values        
+      data     = archive[:,comp] 
+      # fittings
+      fit      = fitexp(time, data, n=order);
+      return fit
+end
 
 ##EasyFit
 #function adjust(il::String, c)
