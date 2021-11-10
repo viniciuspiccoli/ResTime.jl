@@ -1,12 +1,13 @@
 name = "ResTime"
 uuid = "f7cc6b07-01fa-41bf-bc0b-16544420558b"
 authors = ["viniciuspiccoli <viniciuspiccoli2008@hotmail.com> and contributors"]
-version = "0.4.0"
+version = "0.4.1"
 
 [deps]
 CellListMap = "69e1c6dd-3888-40e6-b3c8-31ac5f578864"
 Chemfiles = "46823bd8-5fb3-5f92-9aa0-96921f3dd015"
 ComplexMixtures = "6f35c628-ac57-5bae-8ea9-703a8964f6e9"
+EasyFit = "fde71243-0cda-4261-b7c7-4845bd106b21"
 FortranFiles = "c58ffaec-ab22-586d-bfc5-781a99fd0b10"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 LsqFit = "2fda8390-95c7-5789-9bda-21331edee243"

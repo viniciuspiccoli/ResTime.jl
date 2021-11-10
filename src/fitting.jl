@@ -1,5 +1,26 @@
 # fazer uma funçào para fitar
 
+# fazer aqui funcao para fitar os resultados
+#=
+julia> fitexp(x,y) # or fitexponential
+
+ ------------ Single Exponential fit ----------- 
+
+ Equation: y = A exp(x/b) + C
+
+ With: A = 0.08309782657193134
+       b = 0.4408664103095801
+       C = 1.4408664103095801
+
+ Pearson correlation coefficient, R = 0.765338307304594
+
+ Predicted Y: ypred = [0.10558554154948542, 0.16605481935145136...
+ residues = [0.059213264010704494, 0.056598074147493044...
+
+ ----------------------------------------------- 
+
+=#
+
 ##EasyFit
 #function adjust(il::String, c)
 #    file1 = readdlm("DATA_TIMECORR_4A/timecorr-$il-$c-ions.dat", comments=true, comment_char='#')
