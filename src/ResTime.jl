@@ -8,6 +8,7 @@ module ResTime
   using LinearAlgebra
   using LsqFit
   using Polynomials
+  using EasyFit 
 
   export distance 
   export correlation
@@ -35,6 +36,6 @@ module ResTime
   include("correlation.jl")
   include("autocorr.jl")
   include("autocorr_CellList.jl")
-  include("fitting.jl")
+  # include("fitting.jl")
 
 end
