@@ -4,7 +4,7 @@ authors = ["viniciuspiccoli <viniciuspiccoli2008@hotmail.com> and contributors"]
 version = "0.4.2"
 
 [deps]
-CellListMap = "69e1c6dd-3888-40e6-b3c8-31ac5f578864"
+#CellListMap = "69e1c6dd-3888-40e6-b3c8-31ac5f578864"
 Chemfiles = "46823bd8-5fb3-5f92-9aa0-96921f3dd015"
 ComplexMixtures = "6f35c628-ac57-5bae-8ea9-703a8964f6e9"
 EasyFit = "fde71243-0cda-4261-b7c7-4845bd106b21"
