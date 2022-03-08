@@ -4,17 +4,17 @@ module ResTime
   using Printf
   using StructTypes
   using StaticArrays
-  using CellListMap
+#  using CellListMap
   using LinearAlgebra
   using LsqFit
   using Polynomials
   using EasyFit 
 
   export distance 
-  export correlation
+#  export correlation
   export corr_bench
   export autocorr 
-  export autocorr_cell
+#  export autocorr_cell
   export fitting
 
 
@@ -35,7 +35,7 @@ module ResTime
   include("domain_eval.jl")
   include("correlation.jl")
   include("autocorr.jl")
-  include("autocorr_CellList.jl")
-  # include("fitting.jl")
+  #include("autocorr_CellList.jl")
+  include("fitting.jl")
 
 end
