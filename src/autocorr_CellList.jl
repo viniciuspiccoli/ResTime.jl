@@ -14,13 +14,18 @@ function add_inf!(matrix)
   end
 end
 
+#function find_data!(matrix, dist, nframe)
+#  for i in 1:length(matrix[1,:])            # loop though number of solvents
+#    data = matrix[:,i]                      # all distances between protein atoms and the ith solvent
+#    dist[nframe,i] = minimum(data)
+#  end
+#end
+
 function find_data!(matrix, dist, nframe)
-  for i in 1:length(matrix[1,:])            # loop though number of solvents
-    data = matrix[:,i]                      # all distances between protein atoms and the ith solvent
-    dist[nframe,i] = minimum(data)
+  for i in 1:length(matrix[1,:])            # loop though number of solvents                      
+    dist[nframe,i] = minimum(@view(matrix[:,i])) # all distances between protein atoms and the ith solvent
   end
 end
-
 
 function autocorr_cell(trajectory::Trajectory)
    
@@ -30,18 +35,20 @@ function autocorr_cell(trajectory::Trajectory)
 
   # vector with time - ns 
   delta = 0.01
-  time = zeros(nframes)
-  t1 = 0. 
-  for i in 1:nframes
-    t1 = t1 + delta  
-    time[i] = t1
-  end
+  time  = [ delta*i for i in 0:nframes ]
+
+  #time = zeros(nframes)
+  #t1 = 0. 
+  #for i in 1:nframes
+  #  t1 = t1 + delta  
+  #  time[i] = t1
+  #end
 
   Dist      = zeros(Float64, nframes, nsvt)        # matrix of distances between the atoms 
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
   evals     = zeros(Float64, nframes, nsvt)        # Matrix of the number of events observed
   sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events 
-  cutoff    = 30 # celllistmap parameter
+  cutoff    = 30                                   # celllistmap parameter
   
   #if nprot > nsvt
   #  matrix    = zeros(Float64,nsvt, nprot)

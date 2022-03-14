@@ -8,12 +8,13 @@
   
     # vector with time - ns
     delta = 0.01
-    time = zeros(nframes)
-    t1 = 0. 
-    for i in 1:nframes
-      t1 = t1 + delta  
-      time[i] = t1
-    end
+    time  = [delta*i for i in 0:nframes-1]
+  #  time = zeros(nframes)
+  #  t1 = 0. 
+  #  for i in 1:nframes
+  #    t1 = t1 + delta  
+  #    time[i] = t1
+  #  end
   
     # matrix of distances, absorptions, number of events and sample space
     Dist      = Array{Float64}(undef,nframes,nsvt)
