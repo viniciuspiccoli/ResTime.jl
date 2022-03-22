@@ -7,14 +7,14 @@ conc :: Concentrations
 
 ```
   export restime_calculation 
-  function restime_calculation(il::String, main_dir::String, conc::String)
+  function restime_calculation(il::String, main_dir::String, conc::String, file::String)
     
     cd("$main_dir")
      
     if length(il) == 10   
 
       solute  = "protein"
-      atoms   = PDBTools.readPDB("processed.pdb")
+      atoms   = PDBTools.readPDB(file)
       
       #protein selection
       sel0    = PDBTools.select(atoms,solute)    
@@ -79,7 +79,7 @@ conc :: Concentrations
     elseif length(il) == 9
 
       solute  = "protein"
-      atoms   = PDBTools.readPDB("processed.pdb")
+      atoms   = PDBTools.readPDB(file)
       
       #protein selection
       sel0    = PDBTools.select(atoms,solute)    
@@ -139,7 +139,7 @@ conc :: Concentrations
     elseif length(il) == 7
 
       solute  = "protein"
-      atoms   = PDBTools.readPDB("processed.pdb")
+      atoms   = PDBTools.readPDB(file)
       
       #protein selection
       sel0    = PDBTools.select(atoms,solute)    
@@ -190,7 +190,7 @@ conc :: Concentrations
     elseif length(il) == 6
 
       solute  = "protein"
-      atoms   = PDBTools.readPDB("processed.pdb")
+      atoms   = PDBTools.readPDB(file)
       
       #protein selection
       sel0    = PDBTools.select(atoms,solute)    
