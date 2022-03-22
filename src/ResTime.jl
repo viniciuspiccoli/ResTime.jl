@@ -17,7 +17,6 @@ module ResTime
   export autocorr_cell
   export fitting
 
-
   include("Selection.jl")
   include("FileOperations.jl")  
   include("viewmol.jl") 
@@ -37,5 +36,5 @@ module ResTime
   include("autocorr.jl")
   include("autocorr_CellList.jl")
   include("fitting.jl")
-
+  include("timecorrelation_calc.jl") # only works for my stuff
 end
