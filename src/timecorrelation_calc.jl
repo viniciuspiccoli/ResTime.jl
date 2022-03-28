@@ -334,8 +334,7 @@ conc :: Concentrations
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
       time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff)
-
-      #println("passou da traj anion 1 ")     
+      #println("passou da traj anion 1 ")    
 
 
       # time-correlation calculation for anion2

@@ -13,7 +13,7 @@
  end
 
  # Calculation of survivor probability function using CellListMap.jl package 
- function correlation(traj::Trajectory,cutoff::Float64; cutoff_cl=10)
+ function correlation(traj::Trajectory,cutoff::Float64; cutoff_cl=30)
    # main function - calculation of the matrix distance   
    dist, domain, evals, sp, nprot, nsvt, nframes, stime = autocorr_cell(traj, cutoff_cl)
    # evaluation if the solvent is inside (or not) of the "protein domain"   
