@@ -125,7 +125,7 @@ Example of the final result.
 The time correlation function can be defined ([Ref](https://pubs.acs.org/doi/full/10.1021/jp0666380)) as
 
 
-$<R(t)> =   \Bigg \langle  \frac{1}{N_{0}}  \[ \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t) \]   \bigg \rangle$
+$<R(t)> =   \Big \langle  \frac{1}{N_{0}} \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t)   \Big \rangle$
 
 
 
@@ -136,7 +136,7 @@ where N is the number of molecules within the first solvation layer from the sur
 
 \tau =  \[ \int_{0}^{\infty} <R(t)> \,dt \]
 
-<R(t)> =   \Bigg \langle  \frac{1}{N_{0}}  \[ \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t) \]   \bigg \rangle
+<R(t)> =   \Big \langle  \frac{1}{N_{0}} \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t)  \Big \rangle
 
 ```
 
