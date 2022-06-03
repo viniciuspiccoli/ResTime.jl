@@ -7,8 +7,8 @@ ResTime is a simple package for calculating time-correlation functions derived f
 * [2 - General explanation of the algorithm](#main_idea)
 * [3 - Download of the trajectory for example 1](#download)
 * [4 - Calculation of the time-correlation functions](#example1)
-* [5 - Plotting the results]("plot")
-* [6 - Fitting]("fit")
+* [5 - Plotting the results]("#plot")
+* [6 - Fitting]("#fit")
 
 ## <a name="install"></a>1. Install
 The package can be installed using:
@@ -124,10 +124,10 @@ Example of the final result.
 
 The time correlation function can be defined ([Ref](https://pubs.acs.org/doi/full/10.1021/jp0666380)) as
 
-```math
-<R(t)> =   \Bigg \langle  \frac{1}{N_{0}}  \[ \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t) \]   \bigg \rangle
 
-```
+$<R(t)> =   \Bigg \langle  \frac{1}{N_{0}}  \[ \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t) \]   \bigg \rangle$
+
+
 
 where N is the number of molecules within the first solvation layer from the surface and θi is a Heaviside function, which is equal to unity when molecule i is within the first solvation layer and 0 otherwise. The residence time can be determined by integrating 〈R(t)〉
 
