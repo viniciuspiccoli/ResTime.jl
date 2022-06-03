@@ -121,24 +121,9 @@ Example of the final result.
 
 ## <a name="fit"></a>6. Fitting and characteristic time calculation  
 
-
-The time correlation function can be defined ([Ref](https://pubs.acs.org/doi/full/10.1021/jp0666380)) as
-
-
-$<R(t)> =   \Big \langle  \frac{1}{N_{0}} \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t)   \Big \rangle$
+...
 
 
-
-where N is the number of molecules within the first solvation layer from the surface and θi is a Heaviside function, which is equal to unity when molecule i is within the first solvation layer and 0 otherwise. The residence time can be determined by integrating 〈R(t)〉
-
-
-```math
-
-\tau =  \[ \int_{0}^{\infty} <R(t)> \,dt \]
-
-<R(t)> =   \Big \langle  \frac{1}{N_{0}} \sum_{i=1}^{N_{t}} \Theta_{i}(0) \Theta_{i}(t)  \Big \rangle
-
-```
 
 
 
