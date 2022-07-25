@@ -7,7 +7,7 @@ conc :: Concentrations
 
 ```
   export restime_calculation 
-  function restime_calculation(il::String, main_dir::String, conc::String, file::String)
+  function restime_calculation(il::String, main_dir::String, conc::String, file::String, cutoff)
     
     cd("$main_dir")
      
@@ -65,7 +65,7 @@ conc :: Concentrations
       sel4    = PDBTools.select(atoms,"name OW and resname SOL")
       water   = ResTime.Selection(sel4,natomspermol=1)     
       
-      cutoff = 3.5 # cutoff based on MDDFs
+      #cutoff = 3.5 # cutoff based on MDDFs
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
@@ -271,7 +271,7 @@ conc :: Concentrations
 
 ##### function 2 for tests
   export restime_calculation2 
-  function restime_calculation2(il::String, main_dir::String, conc::String, file::String)
+  function restime_calculation2(il::String, main_dir::String, conc::String, file::String, cutoff)
     
     cd("$main_dir")
      
@@ -401,7 +401,7 @@ conc :: Concentrations
       sel4    = PDBTools.select(atoms,"name OW and resname SOL")
       water   = ResTime.Selection(sel4,natomspermol=1)     
       
-      cutoff = 3.5 # cutoff based on MDDFs
+      ##cutoff = 3.5 # cutoff based on MDDFs
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
@@ -457,7 +457,7 @@ conc :: Concentrations
       sel3    = PDBTools.select(atoms,"name OW and resname SOL")
       water   = ResTime.Selection(sel3,natomspermol=1)     
       
-      cutoff = 3.5 # cutoff based on MDDFs
+      ##cutoff = 3.5 # cutoff based on MDDFs
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
@@ -503,7 +503,7 @@ conc :: Concentrations
       sel3    = PDBTools.select(atoms,"name OW and resname SOL")
       water   = ResTime.Selection(sel3,natomspermol=1)     
       
-      cutoff = 3.5 # cutoff based on MDDFs
+      ##cutoff = 3.5 # cutoff based on MDDFs
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
