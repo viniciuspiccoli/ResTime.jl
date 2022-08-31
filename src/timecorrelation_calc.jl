@@ -138,7 +138,7 @@ conc :: Concentrations
       sel4    = PDBTools.select(atoms,"name OW and resname SOL")
       water   = ResTime.Selection(sel4,natomspermol=1)     
       
-      cutoff = 3.5 # cutoff based on MDDFs
+      #cutoff = 3.5 # cutoff based on MDDFs
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
