@@ -271,7 +271,7 @@ conc :: Concentrations
 
 ##### function that includes all calculations for my systems - 
   export restime_calculation 
-  function restime_calculation(il::String, main_dir::String, conc::String, file::String, cutoff)
+  function restime_calculation(il::String, main_dir::String, conc::String, file::String, cutoff::Vector{Float64})
     
     cd("$main_dir")
      
@@ -327,22 +327,22 @@ conc :: Concentrations
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
-      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff)
+      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff[1])
       #println("passou da traj anion 1 ")    
 
       # time-correlation calculation for anion2
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion2, format="XTC")
-      time_an2, prob_an2 = ResTime.correlation(trajectory,cutoff) 
+      time_an2, prob_an2 = ResTime.correlation(trajectory,cutoff[2]) 
 
       #println("passou da traj anion 2 ")
 
       # time-correlation calculation for cation
       trajectory = ResTime.Trajectory("processed.xtc", protein, cation, format="XTC")
-      time_cat, prob_cat = ResTime.correlation(trajectory,cutoff)
+      time_cat, prob_cat = ResTime.correlation(trajectory,cutoff[3])
       
       # time-correlation calculation for WATER
       trajectory = ResTime.Trajectory("processed.xtc", protein, water, format="XTC")
-      time_wat, prob_wat = correlation(trajectory,cutoff)
+      time_wat, prob_wat = correlation(trajectory,cutoff[4])
      
       #println("passou da traj cation ")
 
@@ -389,26 +389,26 @@ conc :: Concentrations
      
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
-      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff)
+      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff[1])
      
       # time-correlation calculation for anion2
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion2, format="XTC")
-      time_an2, prob_an2 = ResTime.correlation(trajectory,cutoff) 
+      time_an2, prob_an2 = ResTime.correlation(trajectory,cutoff[2]) 
 
       # time-correlation calculation for cation
       trajectory = ResTime.Trajectory("processed.xtc", protein, cation, format="XTC")
-      time_cat, prob_cat = correlation(trajectory,cutoff)
+      time_cat, prob_cat = correlation(trajectory,cutoff[3])
       
       # time-correlation calculation for WATER
       trajectory = ResTime.Trajectory("processed.xtc", protein, water, format="XTC")
-      time_wat, prob_wat = correlation(trajectory,cutoff)
+      time_wat, prob_wat = correlation(trajectory,cutoff[4])
       
       if time_an1 ≈ time_cat && time_an1 ≈  time_wat && time_cat ≈ time_wat && time_an2 ≈ time_an1
         println("esta tudo ok!")
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_an2, prob_cat, prob_wat, cutoff)
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_an2, prob_cat, prob_wat, cutoff[1])
 
     elseif length(il) == 7
 
@@ -443,22 +443,22 @@ conc :: Concentrations
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
-      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff)
+      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff[1])
         
       # time-correlation calculation for cation
       trajectory = ResTime.Trajectory("processed.xtc", protein, cation, format="XTC")
-      time_cat, prob_cat = correlation(trajectory,cutoff)
+      time_cat, prob_cat = correlation(trajectory,cutoff[2])
       
       # time-correlation calculation for WATER
       trajectory = ResTime.Trajectory("processed.xtc", protein, water, format="XTC")
-      time_wat, prob_wat = correlation(trajectory,cutoff)
+      time_wat, prob_wat = correlation(trajectory,cutoff[3])
       
       if time_an1 ≈ time_cat && time_an1 ≈  time_wat && time_cat ≈ time_wat 
         println("esta tudo ok!")
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, cutoff)
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, cutoff[1])
 
     elseif length(il) == 6
 
@@ -487,22 +487,22 @@ conc :: Concentrations
       
       # time-correlation calculation for anion1
       trajectory = ResTime.Trajectory("processed.xtc", protein, anion1, format="XTC")
-      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff)
+      time_an1, prob_an1 = ResTime.correlation(trajectory,cutoff[1])
         
       # time-correlation calculation for cation
       trajectory = ResTime.Trajectory("processed.xtc", protein, cation, format="XTC")
-      time_cat, prob_cat = correlation(trajectory,cutoff)
+      time_cat, prob_cat = correlation(trajectory,cutoff[2])
       
       # time-correlation calculation for WATER
       trajectory = ResTime.Trajectory("processed.xtc", protein, water, format="XTC")
-      time_wat, prob_wat = correlation(trajectory,cutoff)
+      time_wat, prob_wat = correlation(trajectory,cutoff[3])
       
       if time_an1 ≈ time_cat && time_an1 ≈  time_wat && time_cat ≈ time_wat 
         println("esta tudo ok!")
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, cutoff)
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, cutoff[1])
        
     end
 
