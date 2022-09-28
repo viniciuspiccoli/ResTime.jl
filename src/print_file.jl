@@ -1,7 +1,7 @@
 
 # outputfile for 4 components of the system - useful for electrolyte solutions with more than one salt
 function writefile(il::String,c::String,time, prob_an, prob_an2, prob_cat, prob_wat, cutoff)
-  file = open("timecorr-$il-$c-cutoff.dat","w")  
+  file = open("timecorr-$il-$c-$cutoff.dat","w")  
   @printf(file,"# Data for survivor probability calculation - %s \n", il)
   @printf(file,"# 1 - Simulation time (ns)\n")
   @printf(file,"# 2 - ANION1  timecorrelation function\n")
