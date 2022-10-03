@@ -15,7 +15,6 @@ PDBTools = "e29189f1-7114-4dbd-93d0-c5673a921a58"
 Polynomials = "f27b6e38-b328-58d1-80ce-0feddd5e7a45"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
-StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
 StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 
 [compat]
