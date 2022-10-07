@@ -269,14 +269,11 @@ conc :: Concentrations
 
 
 
-##### function that includes all calculations for my systems - 
+  ##### function that includes all calculations for MY systems - 
   export restime_calculation 
-  function restime_calculation(il::String, main_dir::String, conc::String, file::String, cutoff::Vector{Float64})
-    
+  function restime_calculation(il::String, main_dir::String, conc::String, file::String, cutoff::Vector{Float64}, peak::String)
     cd("$main_dir")
-     
     if length(il) == 10   
-       
       solute  = "protein"
       atoms   = PDBTools.readPDB(file)
       
@@ -351,7 +348,7 @@ conc :: Concentrations
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_an2, prob_cat, prob_wat, cutoff)
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_an2, prob_cat, prob_wat, peak)
 
     elseif length(il) == 9
 
@@ -408,7 +405,7 @@ conc :: Concentrations
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_an2, prob_cat, prob_wat, cutoff[1])
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_an2, prob_cat, prob_wat, peak)
 
     elseif length(il) == 7
 
@@ -458,7 +455,7 @@ conc :: Concentrations
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, cutoff[1])
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, peak)
 
     elseif length(il) == 6
 
@@ -502,7 +499,7 @@ conc :: Concentrations
       end
       
       # Print the result in a file
-      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, cutoff[1])
+      ResTime.writefile(il, conc, time_an1, prob_an1, prob_cat, prob_wat, peak)
        
     end
 
