@@ -5,7 +5,10 @@
     nprot = length(trajectory.x_solute) 
     nsvt  = length(trajectory.x_solvent)
     nframes = trajectory.nframes
-  
+    ### aqui eu vou definir nframes =1001  apenas para testar a convergência depois
+    ### cálculos em sistemas com 20 ns de simulação  
+    nframes = 1001
+
     # vector with time - ns
     delta = 0.01
     time  = [delta*i for i in 0:nframes-1]
@@ -15,7 +18,7 @@
   #    t1 = t1 + delta  
   #    time[i] = t1
   #  end
-  
+ 
     # matrix of distances, absorptions, number of events and sample space
     Dist      = Array{Float64}(undef,nframes,nsvt)
     domain    = zeros(Float64, nframes, nsvt)
