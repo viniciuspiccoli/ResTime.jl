@@ -63,7 +63,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
 
   ### aqui eu vou definir nframes =1001  apenas para testar a convergência depois
   ### cálculos em sistemas com 20 ns de simulação 
-  nframes =1001
+#  nframes =1001
   
   time = zeros(nframes)
   t1 = 0. 

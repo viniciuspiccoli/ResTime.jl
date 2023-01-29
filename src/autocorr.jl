@@ -7,7 +7,7 @@
     nframes = trajectory.nframes
     ### aqui eu vou definir nframes =1001  apenas para testar a convergência depois
     ### cálculos em sistemas com 20 ns de simulação  
-    nframes = 1001
+    #nframes = 1001
 
     # vector with time - ns
     delta = 0.01
