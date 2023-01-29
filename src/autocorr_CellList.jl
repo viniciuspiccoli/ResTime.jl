@@ -44,8 +44,6 @@ end
 
 
 
-
-
 #function find_data!(matrix, dist, nframe)
 #  for i in 1:length(matrix[1,:])            # loop though number of solvents                      
 #    dist[nframe,i] = minimum(@view(matrix[:,i])) # all distances between protein atoms and the ith solvent
@@ -79,7 +77,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
   matrix    = zeros(Float64,nprot, nsvt)    
 
   for iframe in 1:nframes 
-    nextframe!(trajectory) # reading coordinates of next frame
+    #nextframe!(trajectory) # reading coordinates of next frame
     solute    = trajectory.solute        #                
     solvent   = trajectory.solvent       # variables to compute the autocorrelation function   
     x_solute  = trajectory.x_solute      #
@@ -104,6 +102,8 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
    # else
    find_data!(matrix, Dist, iframe)
    # end
+
+   nextframe!(trajectory) 
 
   end
   closetraj(trajectory)
