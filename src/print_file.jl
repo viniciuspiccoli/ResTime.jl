@@ -1,6 +1,6 @@
 
 # outputfile for 4 components of the system - useful for electrolyte solutions with more than one salt
-function writefile(il::String,c::String,time, prob_an, prob_an2, prob_cat, prob_wat, cutoff)
+function writefile(il::String,c::String,time, prob_an, prob_an2, prob_cat, prob_wat, cutoff::String)
   file = open("timecorr-$il-$c-$(cutoff).dat","w")  
   @printf(file,"# Data for survivor probability calculation - %s \n", il)
   @printf(file,"# 1 - Simulation time (ns)\n")
@@ -14,7 +14,7 @@ function writefile(il::String,c::String,time, prob_an, prob_an2, prob_cat, prob_
 end
 
 # outputfile for 3 components of the system - useful for electrolyte solutions
-function writefile(il::String,c::String,time, prob_an, prob_cat, prob_wat, cutoff)
+function writefile(il::String,c::String,time, prob_an, prob_cat, prob_wat, cutoff::String)
   file = open("timecorr-$il-$c-$(cutoff).dat","w") 
   @printf(file,"# Data for survivor probability calculationi - %s \n", il)
   @printf(file,"# 1 - Simulation time (ns)\n")
@@ -27,8 +27,8 @@ function writefile(il::String,c::String,time, prob_an, prob_cat, prob_wat, cutof
 end
 
 # output file for two components of the system (solvent)
-function writefile(il::String,c::String,time, prob_an, prob_cat, name1::String, name2::String, cutoff)
-  file = open("timecorr-$il-$c-ions-$(cutoff).dat","w")
+function writefile(il::String,c::String,time, prob_an, prob_cat, name1::String, name2::String, cutoff::String)
+  file = open("timecorr-$il-$c-ions-$cutoff.dat","w")
   @printf(file,"# Data for survivor probability calculation\n")
   @printf(file,"# 1 - Simulation time (ns)\n")
   @printf(file,"# 2 - %s probability survivor function\n", name1)
@@ -39,8 +39,8 @@ function writefile(il::String,c::String,time, prob_an, prob_cat, name1::String, 
 end
 
 # output file for one component of the system
-function writefile(il::String,c::String,time, prob_wat, name1::String, cutoff)
-  file = open("timecorr-$il-$c-water-$(cutoff).dat","w")
+function writefile(il::String,c::String,time, prob_wat, name1::String, cutoff::String)
+  file = open("timecorr-$il-$c-water-$cutoff.dat","w")
   @printf(file,"# Data for survivor probability calculation\n")
   @printf(file,"# 1 - Simulation time (ns)\n")
   @printf(file,"# 2 - %s  timecorrelation function\n", name1)  
