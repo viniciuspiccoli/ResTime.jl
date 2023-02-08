@@ -58,24 +58,30 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
 
   # vector with time - ns 
   delta = 0.01
-  time  = [ delta*i for i in 0:nframes-1]
+  # alterar depois para a linha abaixo 
+  # time  = [ delta*i for i in 0:nframes]
 
-  #time = zeros(nframes)
-  #t1 = 0. 
-  #time[1] = t1
-  #for i in 2:nframes
-  #  t1 = t1 + delta  
-  #  time[i] = t1
-  #end
+  ### aqui eu vou definir nframes =1001  apenas para testar a convergência depois
+  ### cálculos em sistemas com 20 ns de simulação 
+#  nframes =1001
   
-  ### aqui eu vou definir nframes = 1001  apenas para testar a convergência depois
+  time = zeros(nframes)
+  t1 = 0. 
+  time[1] = t1
+  for i in 2:nframes
+    t1 = t1 + delta  
+    time[i] = t1
+  end
+  
+  ### aqui eu vou definir nframes =1001  apenas para testar a convergência depois
   ### cálculos em sistemas com 20 ns de simulação
+  
 
   Dist      = zeros(Float64, nframes, nsvt)        # matrix of distances between the atoms 
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
   evals     = zeros(Float64, nframes, nsvt)        # Matrix of the number of events observed
   sp        = zeros(Float64, nframes, nsvt)        # Matrix of the sample space - all possible events 
-  cutoff    = cutoff_cl                            # celllistmap parameter
+  cutoff    = cutoff_cl                                 # celllistmap parameter
   matrix    = zeros(Float64,nprot, nsvt)    
 
   for iframe in 1:nframes 
@@ -95,6 +101,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
     # atoms dist - must be allocated and calculated for each frame
     #map_pairwise!((x,y,i,j,d2,output) -> update_pair!(i, j, d2, output), matrix, box, cl, reduce = reduce_mind2) 
     map_pairwise!((x,y,i,j,d2,output) -> update_pair!(i, j, d2, output), matrix, box, cl, parallel=false) 
+
     add_inf!(matrix)
 
    # if nprot > nsvt 
@@ -103,6 +110,8 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
    # else
    find_data!(matrix, Dist, iframe)
    # end
+
+   #nextframe!(trajectory) 
 
   end
   closetraj(trajectory)
