@@ -85,7 +85,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
   matrix    = zeros(Float64,nprot, nsvt)    
 
   for iframe in 1:nframes 
-    #nextframe!(trajectory) # reading coordinates of next frame
+    nextframe!(trajectory) # reading coordinates of next frame
     solute    = trajectory.solute        #                
     solvent   = trajectory.solvent       # variables to compute the autocorrelation function   
     x_solute  = trajectory.x_solute      #
@@ -111,7 +111,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
    find_data!(matrix, Dist, iframe)
    # end
 
-   nextframe!(trajectory) 
+   #nextframe!(trajectory) 
 
   end
   closetraj(trajectory)

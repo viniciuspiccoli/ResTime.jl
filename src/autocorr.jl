@@ -14,7 +14,7 @@
     sp        = zeros(Float64, nframes, nsvt)  
     for iframe in 1:nframes 
       # reading coordinates of next frame
-      #nextframe!(trajectory)
+      nextframe!(trajectory)
       # variables to compute the autocorrelation function   
       solute    = trajectory.solute                        
       solvent   = trajectory.solvent
@@ -37,7 +37,7 @@
         end
         Dist[iframe,i] = dist
       end
-      nextframe!(trajectory) # This line was in the beggining of the loop, which 
+      # nextframe!(trajectory) # This line was in the beggining of the loop, which 
       # do not make sense
     end
     closetraj(trajectory)
