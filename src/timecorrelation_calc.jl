@@ -506,8 +506,8 @@ conc :: Concentrations
   end  
 
   ##### function that includes all calculations for MY systems using the fast method (CellListMap)- 
-  export restime_calculation_cell 
-  function restime_calculation_cell(il::String, main_dir::String, conc::String, file::String, cutoff::Vector{Float64}, peak::String, cell::Int64)
+  export restime_calculation 
+  function restime_calculation(il::String, main_dir::String, conc::String, file::String, cutoff::Vector{Float64}, peak::String, cell::Int64)
     cd("$main_dir")
     if length(il) == 10   
       solute  = "protein"
