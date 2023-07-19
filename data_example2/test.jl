@@ -33,13 +33,13 @@ let
         #usando o emu programa
     
         trajectory = ResTime.Trajectory("processed2.xtc", protein, anion, format="XTC");
-        time_an1, prob_an1, dist1 = ResTime.corr_bench(trajectory,cutoff); 
+        time_an1, prob_an1, dist1 = ResTime.correlation(trajectory,cutoff); 
     
         trajectory = ResTime.Trajectory("processed2.xtc", protein, cation, format="XTC");
-        time_an2, prob_an2, dist2 = ResTime.corr_bench(trajectory,cutoff);    
+        time_an2, prob_an2, dist2 = ResTime.correlation(trajectory,cutoff);    
     
         trajectory = ResTime.Trajectory("processed2.xtc", protein, water, format="XTC");
-        time_an3, prob_an3, dist3 = ResTime.corr_bench(trajectory,cutoff); 
+        time_an3, prob_an3, dist3 = ResTime.correlation(trajectory,cutoff); 
     
         plot!(subplot=1, ls=:dash, time_an1, prob_an1, color="red", label=false)
         plot!(subplot=2, ls=:dash, time_an2, prob_an2, color="red", label=false)
@@ -51,13 +51,13 @@ let
         #time_an, prob_an, dist = ResTime.correlation(trajectory,cutoff);
     
         trajectory = ResTime.Trajectory("processed2.xtc", protein, anion, format="XTC");
-        time_an1, prob_an1, dist1 = ResTime.correlation(trajectory,cutoff, cutoff_cl=i); 
+        time_an1, prob_an1, dist1 = ResTime.correlation_cell(trajectory,cutoff, cutoff_cl=i); 
     
         trajectory = ResTime.Trajectory("processed2.xtc", protein, cation, format="XTC");
-        time_an2, prob_an2, dist2 = ResTime.correlation(trajectory,cutoff, cutoff_cl=i);    
+        time_an2, prob_an2, dist2 = ResTime.correlation_cell(trajectory,cutoff, cutoff_cl=i);    
     
         trajectory = ResTime.Trajectory("processed2.xtc", protein, water, format="XTC");
-        time_an3, prob_an3, dist3 = ResTime.correlation(trajectory,cutoff, cutoff_cl=i); 
+        time_an3, prob_an3, dist3 = ResTime.correlation_cell(trajectory,cutoff, cutoff_cl=i); 
     
         plot!(subplot=1, time_an1, prob_an1, color="blue", label=false)
         plot!(subplot=2, time_an2, prob_an2, color="blue", label=false)

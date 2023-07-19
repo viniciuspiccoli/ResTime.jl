@@ -12,6 +12,7 @@ module ResTime
 
   export distance 
   export correlation
+  export correlation_cell
   export corr_bench
   export autocorr 
   export autocorr_cell
