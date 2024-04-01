@@ -20,10 +20,10 @@ let
     sel3    = PDBTools.select(atoms,"name OW and resname SOL");
     water   = ResTime.Selection(sel3,natomspermol=1)
     
-    i = 40 # cutoff cell list map 
+    i = 50 # cutoff cell list map 
    # for i in 10:5:15
 
-        cutoff = 3.5
+        cutoff = 2.5
         plot(layout=(2,2))
         gr(dpi=600)
         plot!(subplot=1, title="Water")
