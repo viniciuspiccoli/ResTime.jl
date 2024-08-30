@@ -71,7 +71,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=500)
   #end
   
   # line just to avoid mismatch - the idea is to reduce the number of frames taken, then increasing speed 
-  nframes=tau
+  nframes=500
 
   Dist      = zeros(Float64, nframes, nsvt)        # matrix of distances between the atoms 
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
@@ -82,8 +82,8 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=500)
 
   for iframe in 1:nframes 
     nextframe!(trajectory) # reading coordinates of next frame
-    solute    = trajectory.solute        #                
-    solvent   = trajectory.solvent       # variables to compute the autocorrelation function   
+   # solute    = trajectory.solute        #                
+   # solvent   = trajectory.solvent       # variables to compute the autocorrelation function   
     x_solute  = trajectory.x_solute      #
     x_solvent = trajectory.x_solvent     #
 
