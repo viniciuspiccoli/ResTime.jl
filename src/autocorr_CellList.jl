@@ -70,8 +70,8 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=100)
   #  time[i] = t1
   #end
   
-  ### aqui eu vou definir nframes = 1001  apenas para testar a convergência depois
-  ### cálculos em sistemas com 20 ns de simulação
+  # line just to avoid mismatch - the idea is to reduce the number of frames taken, then increasing speed 
+  nframes=tau
 
   Dist      = zeros(Float64, nframes, nsvt)        # matrix of distances between the atoms 
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
