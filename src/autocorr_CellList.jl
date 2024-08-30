@@ -50,7 +50,7 @@ end
 #  end
 #end
 
-function autocorr_cell(trajectory::Trajectory, cutoff_cl)
+function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=100)
    
   nprot = length(trajectory.x_solute)  # number of protein atoms 
   nsvt  = length(trajectory.x_solvent) # number of solvent atoms
@@ -58,7 +58,9 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl)
 
   # vector with time - ns 
   delta = 0.01
-  time  = [ delta*i for i in 0:nframes-1]
+  #time  = [ delta*i for i in 0:nframes-1]
+  time  = [ delta*i for i in 0:tau-1]
+
 
   #time = zeros(nframes)
   #t1 = 0. 
