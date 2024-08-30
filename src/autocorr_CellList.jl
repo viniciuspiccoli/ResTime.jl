@@ -58,6 +58,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=500)
 
   # vector with time - ns 
   delta = 0.01
+  nframes=tau
   time  = [ delta*i for i in 0:nframes-1]
 
 
