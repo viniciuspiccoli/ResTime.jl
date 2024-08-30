@@ -58,8 +58,7 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=500)
 
   # vector with time - ns 
   delta = 0.01
-  #time  = [ delta*i for i in 0:nframes-1]
-  time  = [ delta*i for i in 0:tau-1]
+  time  = [ delta*i for i in 0:nframes-1]
 
 
   #time = zeros(nframes)
@@ -71,7 +70,6 @@ function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=500)
   #end
   
   # line just to avoid mismatch - the idea is to reduce the number of frames taken, then increasing speed 
-  nframes=500
 
   Dist      = zeros(Float64, nframes, nsvt)        # matrix of distances between the atoms 
   domain    = zeros(Float64, nframes, nsvt)        # matrix of correlation obtained from the evaluation of the particle position 
