@@ -50,7 +50,7 @@ end
 #  end
 #end
 
-function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=100)
+function autocorr_cell(trajectory::Trajectory, cutoff_cl, tau::Int64=500)
    
   nprot = length(trajectory.x_solute)  # number of protein atoms 
   nsvt  = length(trajectory.x_solvent) # number of solvent atoms
